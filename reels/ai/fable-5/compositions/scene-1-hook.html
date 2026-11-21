@@ -1,0 +1,99 @@
+<template id="scene-1-hook-template">
+  <div id="scene-1-hook" data-composition-id="scene-1-hook" data-width="1080" data-height="1920" class="scene">
+    <!-- ====================================================================
+         Scene 1 · Hook · 6s · PUNCH
+         seg1 (ivory): cold-open headline, mid-sentence energy
+         seg2 (slate): "NEW #1." stamp + Fable 5 wordmark
+         ==================================================================== -->
+
+    <!-- ── Segment 1 · 0.0–2.8s · ivory cold open ───────────────────────── -->
+    <div id="s1-cold-open" class="seg seg--left clip" data-start="0" data-duration="2.8" data-track-index="0"
+      style="justify-content: center; gap: 40px;">
+      <div class="paper-wash"></div>
+
+      <!-- ghost spark, top-right, bleeding off frame -->
+      <div class="spark" data-anim="s1-ghost" data-layout-ignore style="top: 120px; right: -160px; width: 560px; height: 560px; opacity: 0.14;">
+        <svg viewBox="0 0 100 100" fill="none" data-anim="s1-ghost-rot">
+          <g stroke="#D97757" stroke-width="5" stroke-linecap="round">
+            <line x1="50" y1="2" x2="50" y2="28" /><line x1="50" y1="72" x2="50" y2="98" />
+            <line x1="2" y1="50" x2="28" y2="50" /><line x1="72" y1="50" x2="98" y2="50" />
+            <line x1="16" y1="16" x2="34" y2="34" /><line x1="66" y1="66" x2="84" y2="84" />
+            <line x1="16" y1="84" x2="34" y2="66" /><line x1="66" y1="34" x2="84" y2="16" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="seg__kicker" data-anim="s1-eyebrow">Breaking &middot; AI</div>
+      <div class="rule-h rule-h--coral" data-anim="s1-rule" style="width: 140px; height: 3px;"></div>
+
+      <h1 class="seg__line" style="font-size: 92px; max-width: 800px;">
+        <span class="s1-chunk" style="display: block;">There&rsquo;s a new</span>
+        <span class="s1-chunk" style="display: block;"><span class="accent">best AI model</span></span>
+        <span class="s1-chunk" style="display: block;">on the planet.</span>
+      </h1>
+
+      <div class="seg__credit" data-anim="s1-meta">and you can use it right now</div>
+    </div>
+
+    <!-- ── Segment 2 · 2.8–6.0s · slate stamp ───────────────────────────── -->
+    <div id="s1-new-1-stamp" class="seg seg--slate clip" data-start="2.8" data-duration="3.2" data-track-index="0" style="gap: 44px;">
+      <div class="paper-wash paper-wash--slate"></div>
+
+      <div class="spark" data-anim="s2-spark" style="position: relative; width: 180px; height: 180px;">
+        <svg viewBox="0 0 100 100" fill="none" data-anim="s2-spark-rot">
+          <g stroke="#D97757" stroke-width="7" stroke-linecap="round">
+            <line x1="50" y1="2" x2="50" y2="28" /><line x1="50" y1="72" x2="50" y2="98" />
+            <line x1="2" y1="50" x2="28" y2="50" /><line x1="72" y1="50" x2="98" y2="50" />
+            <line x1="16" y1="16" x2="34" y2="34" /><line x1="66" y1="66" x2="84" y2="84" />
+            <line x1="16" y1="84" x2="34" y2="66" /><line x1="66" y1="34" x2="84" y2="16" />
+          </g>
+        </svg>
+      </div>
+
+      <h1 data-anim="s2-stamp"
+        style="font-family: 'Archivo', system-ui, sans-serif; font-weight: 850; font-size: 200px; line-height: 0.95; letter-spacing: -0.02em; color: #faf9f5;">
+        NEW<br /><span style="color: #d97757;">#1.</span>
+      </h1>
+
+      <div class="seg__kicker" data-anim="s2-name" style="font-size: 34px; color: rgba(250, 249, 245, 0.78);">
+        Fable 5 &mdash; Anthropic
+      </div>
+
+      <div class="chip chip--on-slate" data-anim="s2-chip">
+        <span class="chip__dot"></span>available today
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="../lib/animations.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const COMP = "scene-1-hook";
+      const ROOT = `[data-composition-id="${COMP}"]`;
+      const sel = (s) => `${ROOT} ${s}`;
+      const tl = gsap.timeline({ paused: true });
+
+      // ── seg1 · cold open ──────────────────────────────────────────────
+      window.__hf.fadeInDown(tl, sel('[data-anim="s1-eyebrow"]'), 0.2, { y: -26, duration: 0.5, ease: "power2.out" });
+      window.__hf.ruleDraw(tl, sel('[data-anim="s1-rule"]'), 0.3, { duration: 0.6, ease: "expo.out" });
+      window.__hf.staggerInUp(tl, sel(".s1-chunk"), 0.35, { y: 54, duration: 0.7, ease: "power3.out", stagger: 0.14 });
+      window.__hf.fadeIn(tl, sel('[data-anim="s1-meta"]'), 1.5, { duration: 0.5, ease: "power1.out" });
+      // ghost spark: fade to its ambient opacity + continuous slow rotation
+      gsap.set(sel('[data-anim="s1-ghost"]'), { opacity: 0 });
+      tl.fromTo(sel('[data-anim="s1-ghost"]'), { opacity: 0 }, { opacity: 0.14, duration: 0.8, ease: "power1.out" }, 0.3);
+      tl.fromTo(sel('[data-anim="s1-ghost-rot"]'), { rotation: 0 }, { rotation: 38, duration: 2.8, ease: "none" }, 0);
+
+      // ── seg2 · slate stamp ────────────────────────────────────────────
+      window.__hf.slamIn(tl, sel('[data-anim="s2-stamp"]'), 2.9, { fromScale: 1.55, duration: 0.36, ease: "power4.out" });
+      window.__hf.popIn(tl, sel('[data-anim="s2-spark"]'), 3.15, { fromScale: 0.3, duration: 0.5, ease: "back.out(1.6)" });
+      tl.fromTo(sel('[data-anim="s2-spark-rot"]'), { rotation: 0 }, { rotation: 50, duration: 3.1, ease: "none" }, 2.9);
+      window.__hf.fadeInUp(tl, sel('[data-anim="s2-name"]'), 3.5, { y: 28, duration: 0.55, ease: "power3.out" });
+      window.__hf.fadeInUp(tl, sel('[data-anim="s2-chip"]'), 3.75, { y: 24, duration: 0.5, ease: "power2.out" });
+
+      // Pin to data-duration so HF doesn't tear down early.
+      tl.set(ROOT, { opacity: 1 }, 6);
+
+      window.__timelines[COMP] = tl;
+    </script>
+  </div>
+</template>

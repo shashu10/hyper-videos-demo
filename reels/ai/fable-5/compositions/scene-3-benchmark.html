@@ -1,0 +1,255 @@
+<template id="scene-3-benchmark-template">
+  <div id="scene-3-benchmark" data-composition-id="scene-3-benchmark" data-width="1080" data-height="1920" class="scene">
+    <!-- ====================================================================
+         Scene 3 · Weight class · 18s · PEAK — the hero frame
+         seg1 (slate): "This is not a small bump."
+         seg2 (ivory): 91 / 63 / 62 bar chart — build it big, hold the 91
+         seg3 (slate): rotating duotone globe + "toys" quote
+         ==================================================================== -->
+    <style>
+      #scene-3-benchmark .chart {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 56px;
+        height: 830px;
+        width: 100%;
+      }
+      #scene-3-benchmark .chart__col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 20px;
+        width: 210px;
+        height: 100%;
+      }
+      #scene-3-benchmark .chart__value {
+        font-family: "Space Mono", ui-monospace, monospace;
+        font-weight: 700;
+        font-size: 76px;
+        color: #141413;
+        font-variant-numeric: tabular-nums;
+        line-height: 1;
+      }
+      #scene-3-benchmark .chart__value--fable {
+        font-size: 104px;
+        color: #c15f3c;
+      }
+      #scene-3-benchmark .chart__bar {
+        width: 100%;
+        border-radius: 10px 10px 4px 4px;
+      }
+      #scene-3-benchmark .chart__bar--fable {
+        height: 560px;
+        background: #d97757;
+        box-shadow: 0 0 80px rgba(217, 119, 87, 0.35);
+      }
+      #scene-3-benchmark .chart__bar--opus { height: 388px; background: #d4a27f; }
+      #scene-3-benchmark .chart__bar--gpt { height: 381px; background: rgba(61, 61, 58, 0.32); }
+      #scene-3-benchmark .chart__name {
+        font-family: "Archivo", system-ui, sans-serif;
+        font-weight: 700;
+        font-size: 34px;
+        letter-spacing: 0.02em;
+        color: #141413;
+      }
+      #scene-3-benchmark .chart__tag {
+        font-family: "Space Mono", ui-monospace, monospace;
+        font-size: 22px;
+        letter-spacing: 0.08em;
+        color: #5e5d59;
+      }
+      /* ── globe ─────────────────────────────────────────────────────── */
+      #scene-3-benchmark .globe {
+        position: relative;
+        width: 520px;
+        height: 520px;
+        border-radius: 9999px;
+        overflow: hidden;
+        background: #3d3d3a;
+        box-shadow: 0 0 110px rgba(217, 119, 87, 0.22);
+      }
+      #scene-3-benchmark .globe__bands {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1560px;
+        height: 100%;
+        background: repeating-linear-gradient(
+          90deg,
+          rgba(212, 162, 127, 0.55) 0px,
+          rgba(212, 162, 127, 0.55) 7px,
+          rgba(212, 162, 127, 0) 7px,
+          rgba(212, 162, 127, 0) 87px
+        );
+      }
+      #scene-3-benchmark .globe__lats {
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(212, 162, 127, 0.3) 0px,
+          rgba(212, 162, 127, 0.3) 5px,
+          rgba(212, 162, 127, 0) 5px,
+          rgba(212, 162, 127, 0) 103px
+        );
+      }
+      #scene-3-benchmark .globe__water {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 38% 34%,
+          rgba(217, 119, 87, 0.4) 0%,
+          rgba(217, 119, 87, 0.12) 34%,
+          rgba(217, 119, 87, 0) 60%
+        );
+      }
+      #scene-3-benchmark .globe__shade {
+        position: absolute;
+        inset: 0;
+        border-radius: 9999px;
+        background: radial-gradient(
+          circle at 42% 38%,
+          rgba(20, 20, 19, 0) 0%,
+          rgba(20, 20, 19, 0) 52%,
+          rgba(20, 20, 19, 0.55) 86%,
+          rgba(20, 20, 19, 0.78) 100%
+        );
+      }
+      #scene-3-benchmark .quote {
+        font-family: "Source Serif 4", Georgia, serif;
+        font-weight: 560;
+        font-style: italic;
+        font-size: 64px;
+        line-height: 1.18;
+        letter-spacing: -0.02em;
+        color: #faf9f5;
+        max-width: 800px;
+      }
+      #scene-3-benchmark .quote .accent { color: #d97757; }
+    </style>
+
+    <!-- ── Segment 1 · 0.0–2.5s · slate punch ───────────────────────────── -->
+    <div id="s3-not-small-bump" class="seg seg--slate clip" data-start="0" data-duration="2.5" data-track-index="0" style="gap: 40px;">
+      <div class="paper-wash paper-wash--slate"></div>
+      <div class="seg__kicker" data-anim="p-eyebrow">The real story</div>
+      <h2 class="seg__line" style="font-size: 112px; max-width: 800px;" data-anim="p-line">
+        This is <span class="accent">not</span> a small bump.
+      </h2>
+    </div>
+
+    <!-- ── Segment 2 · 2.5–12.0s · THE HERO CHART · 91 / 63 / 62 ────────── -->
+    <div id="s3-hero-chart" class="seg clip" data-start="2.5" data-duration="9.5" data-track-index="0" style="gap: 44px;">
+      <div class="paper-wash"></div>
+      <div class="seg__kicker" data-anim="c-eyebrow" style="max-width: 800px; line-height: 1.6;">
+        One reviewer&rsquo;s senior&#8209;engineer benchmark
+      </div>
+
+      <div class="chart">
+        <div class="chart__col">
+          <div class="chart__value chart__value--fable" data-anim="c-val-fable">91</div>
+          <div class="chart__bar chart__bar--fable" data-anim="c-bar-fable"></div>
+          <div class="chart__name" data-anim="c-name-fable">Fable 5</div>
+          <div class="chart__tag" data-anim="c-name-fable">new</div>
+        </div>
+        <div class="chart__col">
+          <div class="chart__value" data-anim="c-val-opus">63</div>
+          <div class="chart__bar chart__bar--opus" data-anim="c-bar-opus"></div>
+          <div class="chart__name" data-anim="c-name-opus">Opus 4.8</div>
+          <div class="chart__tag" data-anim="c-name-opus">prev. best</div>
+        </div>
+        <div class="chart__col">
+          <div class="chart__value" data-anim="c-val-gpt">62</div>
+          <div class="chart__bar chart__bar--gpt" data-anim="c-bar-gpt"></div>
+          <div class="chart__name" data-anim="c-name-gpt">GPT-5.5</div>
+          <div class="chart__tag" data-anim="c-name-gpt">openai</div>
+        </div>
+      </div>
+
+      <div class="seg__credit" data-anim="c-credit">source: Dan Shipper &middot; Every &mdash; reviewer benchmark, not an official stat</div>
+    </div>
+
+    <!-- ── Segment 3 · 12.0–18.0s · globe demo + "toys" quote ───────────── -->
+    <div id="s3-globe-quote" class="seg seg--slate clip" data-start="12" data-duration="6" data-track-index="0" style="gap: 56px;">
+      <div class="paper-wash paper-wash--slate"></div>
+
+      <div class="globe" data-anim="g-globe">
+        <!-- band strip is 3x globe width and drifts — intentional clipped overflow -->
+        <div class="globe__bands" data-anim="g-bands" data-layout-allow-overflow></div>
+        <div class="globe__lats"></div>
+        <div class="globe__water"></div>
+        <div class="globe__shade"></div>
+      </div>
+
+      <div class="quote" data-anim="g-quote">
+        &ldquo;It makes other models feel like <span class="accent">toys</span>.&rdquo;
+      </div>
+      <div class="seg__credit" data-anim="g-sub">
+        full 3D water sim on a rotating globe &mdash; basically one prompt
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="../lib/animations.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const COMP = "scene-3-benchmark";
+      const ROOT = `[data-composition-id="${COMP}"]`;
+      const sel = (s) => `${ROOT} ${s}`;
+      const tl = gsap.timeline({ paused: true });
+
+      // ── seg1 · punch ──────────────────────────────────────────────────
+      window.__hf.fadeInDown(tl, sel('[data-anim="p-eyebrow"]'), 0.15, { y: -22, duration: 0.4, ease: "power2.out" });
+      window.__hf.slamIn(tl, sel('[data-anim="p-line"]'), 0.3, { fromScale: 1.45, duration: 0.34, ease: "power4.out" });
+
+      // ── seg2 · HERO CHART ─────────────────────────────────────────────
+      window.__hf.fadeInDown(tl, sel('[data-anim="c-eyebrow"]'), 2.65, { y: -22, duration: 0.5, ease: "power2.out" });
+
+      // bars rise from 0 height (height tween keeps the radius crisp)
+      const bars = [
+        { bar: "c-bar-gpt", val: "c-val-gpt", names: "c-name-gpt", h: 381, n: 62, t: 3.0, d: 1.0 },
+        { bar: "c-bar-opus", val: "c-val-opus", names: "c-name-opus", h: 388, n: 63, t: 3.2, d: 1.0 },
+        { bar: "c-bar-fable", val: "c-val-fable", names: "c-name-fable", h: 560, n: 91, t: 3.9, d: 1.5 },
+      ];
+      bars.forEach(({ bar, val, names, h, n, t, d }) => {
+        gsap.set(sel(`[data-anim="${bar}"]`), { height: 0 });
+        tl.fromTo(sel(`[data-anim="${bar}"]`), { height: 0 }, { height: h, duration: d, ease: "power2.inOut" }, t);
+        gsap.set(sel(`[data-anim="${val}"]`), { innerText: 0, opacity: 0 });
+        tl.fromTo(sel(`[data-anim="${val}"]`), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, t);
+        tl.fromTo(
+          sel(`[data-anim="${val}"]`),
+          { innerText: 0 },
+          { innerText: n, snap: { innerText: 1 }, duration: d, ease: "power2.inOut" },
+          t,
+        );
+        window.__hf.fadeInUp(tl, sel(`[data-anim="${names}"]`), t + 0.25, { y: 18, duration: 0.45, ease: "power2.out" });
+      });
+
+      // Fable lands: glow flare, then ambient breathing through the HOLD
+      tl.fromTo(
+        sel('[data-anim="c-bar-fable"]'),
+        { boxShadow: "0 0 80px rgba(217, 119, 87, 0.35)" },
+        { boxShadow: "0 0 130px rgba(217, 119, 87, 0.6)", duration: 0.5, ease: "power2.out", yoyo: true, repeat: 1 },
+        5.4,
+      );
+      tl.to(
+        sel('[data-anim="c-bar-fable"]'),
+        { boxShadow: "0 0 110px rgba(217, 119, 87, 0.5)", duration: 1.1, ease: "sine.inOut", yoyo: true, repeat: 4 },
+        6.6,
+      );
+
+      window.__hf.fadeIn(tl, sel('[data-anim="c-credit"]'), 5.9, { duration: 0.6, ease: "power1.out" });
+
+      // ── seg3 · globe + quote ──────────────────────────────────────────
+      window.__hf.maskReveal(tl, sel('[data-anim="g-globe"]'), 12.15, { fromScale: 0.86, duration: 0.8, ease: "expo.out" });
+      // meridians drift one full period over the segment — reads as rotation
+      tl.fromTo(sel('[data-anim="g-bands"]'), { x: 0 }, { x: -1040, duration: 6, ease: "none" }, 12);
+      window.__hf.fadeInUp(tl, sel('[data-anim="g-quote"]'), 12.7, { y: 44, duration: 0.7, ease: "power3.out" });
+      window.__hf.fadeIn(tl, sel('[data-anim="g-sub"]'), 13.4, { duration: 0.6, ease: "power1.out" });
+
+      tl.set(ROOT, { opacity: 1 }, 18);
+      window.__timelines[COMP] = tl;
+    </script>
+  </div>
+</template>

@@ -1,0 +1,59 @@
+# Dependencies
+node_modules/
+.pnp.*
+.yarn/
+
+# Build / cache
+.cache/
+__pycache__/
+.hyperframes/
+.next/
+.turbo/
+.vite/
+
+# Renders & generated media (uncomment if you don't want renders in git)
+renders/
+*.mp4
+*.webm
+*.mov
+
+# Keep source media (videos / audio you author with)
+!reels/**/assets/**/*.mp4
+!reels/**/assets/**/*.webm
+!reels/**/assets/**/*.mov
+
+# Hyperframes runtime artifacts
+**/.hyperframes/
+**/.thumbnails/
+**/.waveform-cache/
+**/.transcode-cache/
+**/preview-*.log
+
+# Local scratch projects and generated check output
+**/.tmp-gsap/
+**/tmp-gsap/
+**/check_output.txt
+**/.check-*.json
+
+# Studio / preview server
+.preview-*
+
+# Editor / OS
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env
+.env
+.env.local
+.env.*.local

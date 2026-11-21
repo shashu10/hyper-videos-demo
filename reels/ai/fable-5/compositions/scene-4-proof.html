@@ -1,0 +1,230 @@
+<template id="scene-4-proof-template">
+  <div id="scene-4-proof" data-composition-id="scene-4-proof" data-width="1080" data-height="1920" class="scene">
+    <!-- ====================================================================
+         Scene 4 · Proof montage · 14s · rapid-fire
+         seg1 (ivory-deep): Pokémon FireRed — game screen, HP bar drains
+         seg2 (ivory): Stripe — months → a day
+         seg3 (slate): "the harder the task, the bigger the lead."
+         ==================================================================== -->
+    <style>
+      #scene-4-proof .pkm-screen {
+        position: relative;
+        width: 800px;
+        height: 540px;
+        background: #141413;
+        border: 12px solid #ebdbbc;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 12px 40px rgba(20, 20, 19, 0.16);
+        padding: 44px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: left;
+      }
+      #scene-4-proof .pkm-scanlines {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(250, 249, 245, 0.05) 0px,
+          rgba(250, 249, 245, 0.05) 3px,
+          rgba(250, 249, 245, 0) 3px,
+          rgba(250, 249, 245, 0) 9px
+        );
+      }
+      #scene-4-proof .pkm-label {
+        font-family: "Space Mono", ui-monospace, monospace;
+        font-weight: 700;
+        font-size: 30px;
+        letter-spacing: 0.14em;
+        color: #faf9f5;
+      }
+      #scene-4-proof .pkm-hp {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      #scene-4-proof .pkm-hp__tag {
+        font-family: "Space Mono", ui-monospace, monospace;
+        font-weight: 700;
+        font-size: 26px;
+        color: #d4a27f;
+      }
+      #scene-4-proof .pkm-hp__track {
+        flex: 1;
+        height: 30px;
+        border: 3px solid #ebdbbc;
+        border-radius: 8px;
+        padding: 4px;
+      }
+      #scene-4-proof .pkm-hp__fill {
+        height: 100%;
+        width: 100%;
+        border-radius: 4px;
+        background: #d4a27f;
+      }
+      #scene-4-proof .pkm-dialog {
+        border: 3px solid rgba(250, 249, 245, 0.4);
+        border-radius: 10px;
+        padding: 22px 28px;
+        font-family: "Space Mono", ui-monospace, monospace;
+        font-size: 30px;
+        line-height: 1.4;
+        color: #faf9f5;
+      }
+      #scene-4-proof .pkm-dialog .accent { color: #d97757; }
+      /* ── stripe ────────────────────────────────────────────────────── */
+      #scene-4-proof .stripe-row {
+        display: flex;
+        align-items: baseline;
+        gap: 36px;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: 800px;
+      }
+      #scene-4-proof .stripe-months {
+        position: relative;
+        font-family: "Source Serif 4", Georgia, serif;
+        font-weight: 640;
+        font-size: 120px;
+        letter-spacing: -0.03em;
+        color: #5e5d59;
+      }
+      #scene-4-proof .stripe-months__strike {
+        position: absolute;
+        left: -12px;
+        right: -12px;
+        top: 52%;
+        height: 12px;
+        border-radius: 6px;
+        background: #c15f3c;
+        transform-origin: left center;
+      }
+      #scene-4-proof .stripe-day {
+        font-family: "Source Serif 4", Georgia, serif;
+        font-weight: 640;
+        font-style: italic;
+        font-size: 132px;
+        letter-spacing: -0.03em;
+        color: #c15f3c;
+      }
+      #scene-4-proof .stripe-arrow {
+        font-family: "Source Serif 4", Georgia, serif;
+        font-weight: 640;
+        font-size: 100px;
+        color: #141413;
+      }
+      /* ── punchline ─────────────────────────────────────────────────── */
+      #scene-4-proof .punch-ghost {
+        position: absolute;
+        font-family: "Source Serif 4", Georgia, serif;
+        font-weight: 700;
+        font-size: 1100px;
+        line-height: 0.7;
+        color: #d97757;
+        opacity: 0.1;
+        top: 560px;
+        left: 40px;
+        pointer-events: none;
+        user-select: none;
+      }
+    </style>
+
+    <!-- ── Segment 1 · 0.0–4.5s · Pokémon FireRed ──────────────────────── -->
+    <div id="s4-pokemon" class="seg seg--deep clip" data-start="0" data-duration="4.5" data-track-index="0" style="gap: 48px;">
+      <div class="paper-wash"></div>
+
+      <div class="pkm-screen" data-anim="pk-screen">
+        <div class="pkm-label">POK&Eacute;MON FIRERED</div>
+        <div class="pkm-hp">
+          <span class="pkm-hp__tag">HP</span>
+          <div class="pkm-hp__track"><div class="pkm-hp__fill" data-anim="pk-hp"></div></div>
+        </div>
+        <div class="pkm-dialog" data-anim="pk-dialog">
+          &#9654; <span class="accent">FABLE 5</span> used SCREENSHOTS!<br />It&rsquo;s super effective&hellip;
+        </div>
+        <div class="pkm-scanlines"></div>
+      </div>
+
+      <h2 class="seg__line" style="font-size: 84px;" data-anim="pk-line">
+        It beat the <span class="accent">whole game.</span>
+      </h2>
+      <div class="seg__credit" data-anim="pk-sub">vision only &middot; no special tools</div>
+    </div>
+
+    <!-- ── Segment 2 · 4.5–9.0s · Stripe — months to a day ─────────────── -->
+    <div id="s4-stripe" class="seg clip" data-start="4.5" data-duration="4.5" data-track-index="0" style="gap: 56px;">
+      <div class="paper-wash"></div>
+      <div class="seg__kicker" data-anim="st-eyebrow">At Stripe</div>
+
+      <div class="stripe-row">
+        <span class="stripe-months" data-anim="st-months">
+          months
+          <span class="stripe-months__strike" data-anim="st-strike"></span>
+        </span>
+        <span class="stripe-arrow" data-anim="st-arrow">&rarr;</span>
+        <span class="stripe-day" data-anim="st-day">a day.</span>
+      </div>
+
+      <div class="seg__sub" data-anim="st-sub">
+        A team&rsquo;s engineering work &mdash; compressed.
+      </div>
+    </div>
+
+    <!-- ── Segment 3 · 9.0–14.0s · the pattern ──────────────────────────── -->
+    <!-- kinetic lines hold offscreen entrance offsets at load — intentional -->
+    <div id="s4-pattern" class="seg seg--slate clip" data-start="9" data-duration="5" data-track-index="0" style="gap: 28px;"
+      data-layout-allow-overflow>
+      <div class="paper-wash paper-wash--slate"></div>
+      <div class="punch-ghost" data-anim="pn-ghost" data-layout-ignore>&rarr;</div>
+
+      <h2 class="seg__line" style="font-size: 102px; max-width: 820px;" data-anim="pn-line1">The harder the task,</h2>
+      <h2 class="seg__line" style="font-size: 102px; max-width: 820px;" data-anim="pn-line2">
+        the <span class="accent">bigger the lead.</span>
+      </h2>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="../lib/animations.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const COMP = "scene-4-proof";
+      const ROOT = `[data-composition-id="${COMP}"]`;
+      const sel = (s) => `${ROOT} ${s}`;
+      const tl = gsap.timeline({ paused: true });
+
+      // ── seg1 · Pokémon ────────────────────────────────────────────────
+      window.__hf.maskReveal(tl, sel('[data-anim="pk-screen"]'), 0.15, { fromScale: 0.92, duration: 0.6, ease: "expo.out" });
+      // HP bar drains across the beat — the win, visualized
+      tl.fromTo(
+        sel('[data-anim="pk-hp"]'),
+        { width: "100%", backgroundColor: "#d4a27f" },
+        { width: "3%", backgroundColor: "#d97757", duration: 2.6, ease: "power1.inOut" },
+        0.7,
+      );
+      window.__hf.fadeIn(tl, sel('[data-anim="pk-dialog"]'), 0.9, { duration: 0.5, ease: "power1.out" });
+      window.__hf.fadeInUp(tl, sel('[data-anim="pk-line"]'), 1.2, { y: 40, duration: 0.6, ease: "power3.out" });
+      window.__hf.fadeIn(tl, sel('[data-anim="pk-sub"]'), 1.8, { duration: 0.5, ease: "power1.out" });
+
+      // ── seg2 · Stripe ─────────────────────────────────────────────────
+      window.__hf.fadeInDown(tl, sel('[data-anim="st-eyebrow"]'), 4.6, { y: -22, duration: 0.45, ease: "power2.out" });
+      window.__hf.fadeInLeft(tl, sel('[data-anim="st-months"]'), 4.75, { x: -60, duration: 0.55, ease: "power3.out" });
+      window.__hf.ruleDraw(tl, sel('[data-anim="st-strike"]'), 5.4, { duration: 0.35, ease: "power4.out" });
+      window.__hf.fadeIn(tl, sel('[data-anim="st-arrow"]'), 5.75, { duration: 0.3, ease: "power1.out" });
+      window.__hf.slamIn(tl, sel('[data-anim="st-day"]'), 5.95, { fromScale: 1.5, duration: 0.38, ease: "power4.out" });
+      window.__hf.fadeInUp(tl, sel('[data-anim="st-sub"]'), 6.5, { y: 30, duration: 0.55, ease: "power2.out" });
+
+      // ── seg3 · the pattern ────────────────────────────────────────────
+      gsap.set(sel('[data-anim="pn-ghost"]'), { opacity: 0 });
+      tl.fromTo(sel('[data-anim="pn-ghost"]'), { opacity: 0 }, { opacity: 0.1, duration: 0.8, ease: "power1.out" }, 9.2);
+      tl.fromTo(sel('[data-anim="pn-ghost"]'), { x: -160 }, { x: 120, duration: 4.6, ease: "none" }, 9.2);
+      window.__hf.kineticIn(tl, sel('[data-anim="pn-line1"]'), 9.25, { direction: "left", distance: 420, duration: 0.5, ease: "power4.out" });
+      window.__hf.kineticIn(tl, sel('[data-anim="pn-line2"]'), 9.5, { direction: "right", distance: 420, duration: 0.5, ease: "power4.out" });
+
+      tl.set(ROOT, { opacity: 1 }, 14);
+      window.__timelines[COMP] = tl;
+    </script>
+  </div>
+</template>

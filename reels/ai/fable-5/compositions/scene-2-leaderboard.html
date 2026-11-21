@@ -1,0 +1,220 @@
+<template id="scene-2-leaderboard-template">
+  <div id="scene-2-leaderboard" data-composition-id="scene-2-leaderboard" data-width="1080" data-height="1920" class="scene">
+    <!-- ====================================================================
+         Scene 2 · What it is · 12s · build
+         seg1: "a new tier above Opus" + model ladder
+         seg2: leaderboard — Fable drops into #1, bumps everyone down
+         seg3: "Pro users have it today."
+         ==================================================================== -->
+    <style>
+      #scene-2-leaderboard .ladder {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        align-items: flex-start;
+      }
+      #scene-2-leaderboard .ladder__rung {
+        display: inline-flex;
+        align-items: center;
+        gap: 18px;
+        padding: 20px 34px;
+        border-radius: 12px;
+        background: #f0eee6;
+        border: 1px solid rgba(20, 20, 19, 0.14);
+        font-family: "Archivo", system-ui, sans-serif;
+        font-weight: 700;
+        font-size: 40px;
+        letter-spacing: 0.04em;
+        color: #141413;
+      }
+      #scene-2-leaderboard .ladder__rung--fable {
+        background: #d97757;
+        border-color: #d97757;
+        color: #141413;
+        box-shadow: 0 0 60px rgba(217, 119, 87, 0.3);
+      }
+      #scene-2-leaderboard .ladder__tag {
+        font-family: "Space Mono", ui-monospace, monospace;
+        font-size: 24px;
+        letter-spacing: 0.2em;
+        padding: 6px 14px;
+        border-radius: 8px;
+        background: #141413;
+        color: #faf9f5;
+      }
+      /* ── leaderboard card ─────────────────────────────────────────── */
+      #scene-2-leaderboard .lb-card {
+        position: relative;
+        width: 800px;
+        height: 540px;
+        background: #faf9f5;
+        border: 1px solid rgba(20, 20, 19, 0.14);
+        border-radius: 16px;
+        box-shadow: 0 12px 40px rgba(20, 20, 19, 0.1);
+        padding: 36px;
+      }
+      #scene-2-leaderboard .lb-rank {
+        position: absolute;
+        left: 36px;
+        width: 72px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        font-family: "Space Mono", ui-monospace, monospace;
+        font-weight: 700;
+        font-size: 40px;
+        color: #5e5d59;
+        font-variant-numeric: tabular-nums;
+      }
+      #scene-2-leaderboard .lb-row {
+        position: absolute;
+        left: 120px;
+        right: 36px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 30px;
+        border-radius: 12px;
+        background: #f0eee6;
+        border: 1px solid rgba(20, 20, 19, 0.1);
+        font-family: "Archivo", system-ui, sans-serif;
+        font-weight: 700;
+        font-size: 38px;
+        color: #141413;
+      }
+      #scene-2-leaderboard .lb-row__trend {
+        font-family: "Space Mono", ui-monospace, monospace;
+        font-size: 30px;
+        color: #5e5d59;
+      }
+      #scene-2-leaderboard .lb-row--fable {
+        background: #d97757;
+        border-color: #d97757;
+        color: #141413;
+      }
+      #scene-2-leaderboard .lb-row--fable .lb-row__trend { color: #141413; }
+      /* final slots: 0/118/236/354 + padding 36 */
+      #scene-2-leaderboard .slot-0 { top: 36px; }
+      #scene-2-leaderboard .slot-1 { top: 154px; }
+      #scene-2-leaderboard .slot-2 { top: 272px; }
+      #scene-2-leaderboard .slot-3 { top: 390px; }
+    </style>
+
+    <!-- ── Segment 1 · 0.0–3.5s · a new tier above Opus ─────────────────── -->
+    <div id="s2-tier-ladder" class="seg seg--left clip" data-start="0" data-duration="3.5" data-track-index="0"
+      style="justify-content: center; gap: 48px;">
+      <div class="paper-wash"></div>
+      <div class="seg__kicker" data-anim="t-eyebrow">Anthropic just dropped</div>
+      <h2 class="seg__line" style="font-size: 96px; max-width: 800px;" data-anim="t-line">
+        Fable 5. A new tier <span class="accent">above</span> Opus.
+      </h2>
+      <div class="ladder">
+        <div class="ladder__rung ladder__rung--fable t-rung">FABLE 5 <span class="ladder__tag">NEW</span></div>
+        <div class="ladder__rung t-rung">OPUS</div>
+        <div class="ladder__rung t-rung">SONNET</div>
+        <div class="ladder__rung t-rung">HAIKU</div>
+      </div>
+    </div>
+
+    <!-- ── Segment 2 · 3.5–9.0s · the leaderboard shuffle ───────────────── -->
+    <div id="s2-leaderboard" class="seg clip" data-start="3.5" data-duration="5.5" data-track-index="0" style="gap: 52px;">
+      <div class="paper-wash"></div>
+      <div class="seg__kicker" data-anim="lb-eyebrow">Coding + reasoning benchmarks</div>
+      <h2 class="seg__line" style="font-size: 84px;" data-anim="lb-line">Straight to <span class="accent">the top.</span></h2>
+
+      <!-- rows sit in pre-shuffle entrance offsets at load — intentional -->
+      <div class="lb-card" data-anim="lb-card" data-layout-allow-overflow>
+        <div class="lb-rank slot-0 lb-rank-el">1</div>
+        <div class="lb-rank slot-1 lb-rank-el">2</div>
+        <div class="lb-rank slot-2 lb-rank-el">3</div>
+        <div class="lb-rank slot-3 lb-rank-el">4</div>
+
+        <!-- END-STATE layout: Fable on top, everyone bumped down one slot -->
+        <div class="lb-row lb-row--fable slot-0" data-anim="lb-fable">
+          <span>Fable 5</span><span class="lb-row__trend">&#9650; new</span>
+        </div>
+        <div class="lb-row slot-1" data-anim="lb-gpt">
+          <span>GPT-5.5</span><span class="lb-row__trend">&#9660; 1</span>
+        </div>
+        <div class="lb-row slot-2" data-anim="lb-gemini">
+          <span>Gemini 3 Pro</span><span class="lb-row__trend">&#9660; 1</span>
+        </div>
+        <div class="lb-row slot-3" data-anim="lb-opus">
+          <span>Opus 4.8</span><span class="lb-row__trend">&#9660; 1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Segment 3 · 9.0–12.0s · available today ──────────────────────── -->
+    <div id="s2-available" class="seg clip" data-start="9" data-duration="3" data-track-index="0" style="gap: 48px;">
+      <div class="paper-wash"></div>
+      <div class="ghost-type" data-anim="avail-ghost" data-layout-ignore style="font-size: 1200px; top: 46%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1;">5</div>
+      <h2 class="seg__line" style="font-size: 104px; max-width: 800px;" data-anim="avail-line">
+        Pro users have it <span class="accent">today.</span>
+      </h2>
+      <div class="chip" data-anim="avail-chip"><span class="chip__dot"></span>rolling out in stages</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="../lib/animations.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const COMP = "scene-2-leaderboard";
+      const ROOT = `[data-composition-id="${COMP}"]`;
+      const sel = (s) => `${ROOT} ${s}`;
+      const tl = gsap.timeline({ paused: true });
+
+      // ── seg1 · tier ladder ────────────────────────────────────────────
+      window.__hf.fadeInDown(tl, sel('[data-anim="t-eyebrow"]'), 0.15, { y: -24, duration: 0.45, ease: "power2.out" });
+      window.__hf.fadeInUp(tl, sel('[data-anim="t-line"]'), 0.3, { y: 48, duration: 0.65, ease: "power3.out" });
+      // ladder builds: Fable rung pops hardest, rest cascade
+      window.__hf.staggerInUp(tl, sel(".t-rung"), 0.8, { y: 36, duration: 0.5, ease: "expo.out", stagger: 0.11 });
+
+      // ── seg2 · leaderboard shuffle ────────────────────────────────────
+      window.__hf.fadeInDown(tl, sel('[data-anim="lb-eyebrow"]'), 3.6, { y: -22, duration: 0.45, ease: "power2.out" });
+      window.__hf.fadeInUp(tl, sel('[data-anim="lb-line"]'), 3.72, { y: 40, duration: 0.6, ease: "power3.out" });
+      window.__hf.maskReveal(tl, sel('[data-anim="lb-card"]'), 3.9, { fromScale: 0.94, duration: 0.6, ease: "expo.out" });
+      window.__hf.fadeIn(tl, sel(".lb-rank-el"), 4.1, { duration: 0.4, ease: "power1.out" });
+
+      // competitor rows enter in their PRE-shuffle slots (one slot up: y -118)
+      const preShift = [
+        ['[data-anim="lb-gpt"]', 4.25],
+        ['[data-anim="lb-gemini"]', 4.4],
+        ['[data-anim="lb-opus"]', 4.55],
+      ];
+      preShift.forEach(([s, t]) => {
+        gsap.set(sel(s), { x: -70, y: -118, opacity: 0 });
+        tl.fromTo(sel(s), { x: -70, y: -118, opacity: 0 }, { x: 0, y: -118, opacity: 1, duration: 0.5, ease: "power3.out" }, t);
+      });
+
+      // Fable 5 DROPS in from above the card; everyone shuffles down
+      gsap.set(sel('[data-anim="lb-fable"]'), { y: -380, opacity: 0 });
+      tl.fromTo(
+        sel('[data-anim="lb-fable"]'),
+        { y: -380, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.65, ease: "power4.out" },
+        5.9,
+      );
+      preShift.forEach(([s]) => {
+        tl.to(sel(s), { y: 0, duration: 0.6, ease: "power2.inOut" }, 6.0);
+      });
+      // landing glow pulse on the Fable row (box-shadow only — no transform conflict)
+      tl.fromTo(
+        sel('[data-anim="lb-fable"]'),
+        { boxShadow: "0 0 0px rgba(217, 119, 87, 0)" },
+        { boxShadow: "0 0 70px rgba(217, 119, 87, 0.55)", duration: 0.45, ease: "power2.out", yoyo: true, repeat: 1 },
+        6.5,
+      );
+
+      // ── seg3 · available today ────────────────────────────────────────
+      gsap.set(sel('[data-anim="avail-ghost"]'), { opacity: 0 });
+      tl.fromTo(sel('[data-anim="avail-ghost"]'), { opacity: 0 }, { opacity: 0.1, duration: 0.7, ease: "power1.out" }, 9.1);
+      window.__hf.zoomInBig(tl, sel('[data-anim="avail-line"]'), 9.15, { fromScale: 0.55, duration: 0.55, ease: "expo.out" });
+      window.__hf.fadeInUp(tl, sel('[data-anim="avail-chip"]'), 9.7, { y: 26, duration: 0.5, ease: "power2.out" });
+
+      tl.set(ROOT, { opacity: 1 }, 12);
+      window.__timelines[COMP] = tl;
+    </script>
+  </div>
+</template>

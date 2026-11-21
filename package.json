@@ -1,0 +1,14 @@
+{
+  "name": "hyper-videos",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/run-reel.mjs dev",
+    "check": "node scripts/run-reel.mjs check",
+    "render": "node scripts/run-reel.mjs render",
+    "publish": "node scripts/run-reel.mjs publish"
+  },
+  "devDependencies": {
+    "@hyperframes/core": "0.8.136"
+  }
+}

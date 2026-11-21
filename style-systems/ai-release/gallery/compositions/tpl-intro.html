@@ -1,0 +1,35 @@
+<template id="tpl-intro-template">
+  <div id="tpl-intro" data-composition-id="tpl-intro" data-width="1080" data-height="1920" class="scene">
+    <div class="seg">
+      <div class="bg bg--draw">
+        <div class="bg__grid-h" data-anim="grid-h"></div>
+        <div class="bg__grid-v" data-anim="grid-v"></div>
+        <div class="bg__vignette"></div>
+      </div>
+      <div class="catalog-title" data-anim="tag">Gen AI Meetup</div>
+      <h1 class="display display--lg" data-anim="title">Frame<span class="dot">.</span>md</h1>
+      <p class="catalog-sub" data-anim="sub">Upper-frame element templates &amp; motion presets for HyperFrames Shorts.</p>
+      <div class="kicker" data-anim="kicker">Template gallery</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="../lib/animations.js"></script>
+    <script>
+      const COMP = "tpl-intro";
+      const ROOT = `[data-composition-id="${COMP}"]`;
+      const sel = (s) => `${ROOT} ${s}`;
+      const tl = gsap.timeline({ paused: true });
+      const hf = window.__hf;
+      hf.gridDraw(tl, sel('[data-anim="grid-h"]'), sel('[data-anim="grid-v"]'), 0, {
+        duration: 1,
+        stagger: 0.12,
+      });
+      hf.kickerStamp(tl, sel('[data-anim="tag"]'), 0.35);
+      hf.riseIn(tl, sel('[data-anim="title"]'), 0.5);
+      hf.riseIn(tl, sel('[data-anim="sub"]'), 0.7, { y: 28 });
+      hf.kickerStamp(tl, sel('[data-anim="kicker"]'), 0.95);
+      tl.set(ROOT, { opacity: 1 }, 4);
+      window.__timelines = window.__timelines || {};
+      window.__timelines[COMP] = tl;
+    </script>
+  </div>
+</template>

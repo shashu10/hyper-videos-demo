@@ -1,0 +1,62 @@
+<template id="tpl-stat-hero-template">
+  <div id="tpl-stat-hero" data-composition-id="tpl-stat-hero" data-width="1080" data-height="1920" class="scene">
+    <style>
+      #tpl-stat-hero .seg {
+        padding-top: calc(var(--safe-top) + 80px);
+        padding-bottom: calc(var(--safe-bottom) - 80px);
+      }
+      #tpl-stat-hero .mascot {
+        position: absolute;
+        top: auto !important;
+        bottom: -240px !important;
+        right: -780px !important;
+        width: 960px !important;
+        height: auto !important;
+        transform-origin: bottom right;
+      }
+    </style>
+    <div class="seg">
+      <div class="bg"></div>
+      <div class="kicker" data-anim="kicker">The money</div>
+      <div class="display display--hero mono" data-anim="num">$0B</div>
+      <p class="label" data-anim="label">Global AI capex in 2025 — one number, one story.</p>
+      <img style="background-color: rgba(0, 0, 0, 0); background-image: none; opacity: 0.5; mix-blend-mode: lighten" class="mascot" src="../assets/mascot.png" alt="" data-anim="mascot" data-layout-allow-occlusion="">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="../lib/animations.js"></script>
+    <script>
+      const COMP = "tpl-stat-hero";
+      const ROOT = `[data-composition-id="${COMP}"]`;
+      const sel = (s) => `${ROOT} ${s}`;
+      const tl = gsap.timeline({ paused: true });
+      const hf = window.__hf;
+      hf.kickerStamp(tl, sel('[data-anim="kicker"]'), 0.15);
+      gsap.set(sel('[data-anim="num"]'), { opacity: 0 });
+      tl.to(sel('[data-anim="num"]'), { opacity: 1, duration: 0.2 }, 0.35);
+      const capex = { v: 0 };
+      tl.to(capex, {
+        v: 965, duration: 0.9, ease: "power2.out",
+        onUpdate: () => { document.querySelector(sel('[data-anim="num"]')).textContent = "$" + Math.round(capex.v) + "B"; },
+      }, 0.4);
+      hf.riseIn(tl, sel('[data-anim="label"]'), 0.7, { y: 24 });
+      
+      // Custom mascot bottom-right peek tilted left at -30 deg (60 deg from horizontal)
+      const mascot = sel('[data-anim="mascot"]');
+      gsap.set(mascot, { opacity: 0.5, x: 350, y: 350, rotation: -10 });
+      tl.fromTo(mascot,
+        { x: 350, y: 350, rotation: -10 },
+        { x: 0, y: 0, rotation: -30, duration: 0.6, ease: "back.out(1.2)" },
+        0.9
+      );
+      
+      // Custom mascot reaction from -30 deg resting position
+      tl.to(mascot, { rotation: -26, duration: 0.15, ease: "power2.out" }, 1.6);
+      tl.to(mascot, { rotation: -30, duration: 0.15, ease: "power2.in" }, 1.75);
+
+      hf.pulseGlow(tl, sel('[data-anim="num"]'), 1.3);
+      tl.set(ROOT, { opacity: 1 }, 5);
+      window.__timelines = window.__timelines || {};
+      window.__timelines[COMP] = tl;
+    </script>
+  </div>
+</template>
